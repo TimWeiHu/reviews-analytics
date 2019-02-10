@@ -13,3 +13,9 @@ for review in data:
     L += len(review)
 L_avg = L / len(data)
 print('每筆留言平均長度為：', L_avg)
+
+new = []
+for d in data:
+    if len(d) < 100:
+        new.append(d)
+print('長度小於 100 的留言數量:', len(new))
