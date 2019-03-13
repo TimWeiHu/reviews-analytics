@@ -21,17 +21,17 @@ def ave_len(data):
     print('每筆留言平均長度為：', L_avg)
     return L_avg
 
-# 尋找短於特定長度留言的數量並傳回，印出數量
-def short(data, l = 100):
-    short_reviews = []
+# 篩選短於特定長度留言的數量並傳回，印出數量
+def sr(data, l = 100):
+    shorter_reviews = []
     for d in data:
         if len(d) < l:
-            short_reviews.append(d)
-    print('長度小於', l, '的留言數量:', len(short_reviews))
-    return short_reviews
+            shorter_reviews.append(d)
+    print('長度小於', l, '的留言數量:', len(shorter_reviews))
+    return shorter_reviews
 
 # 尋找包含特定字串的留言並傳回，印出數量
-def word_count(data, word):
+def word_search(data, word):
     include_word = []
     for d in data:
         if word in d:
@@ -39,9 +39,22 @@ def word_count(data, word):
     print('內容包含', word, '的留言數量:', len(include_word))
     return include_word
 
+# 計算每個單字出現次數
+def word_count(data):
+    wc = {}
+    for d in data:
+        words = d.split(' ')
+        for word in words:
+            if word not in wc:
+                wc[word] = 1
+            else :
+                wc[word] += 1
+    return wc
 
 data = count('reviews.txt')
 
+print(word_count(data)['good'])
+
 # ave_len(data)
-# print(short(data, 98)[0])
-# print(word_count(data, ' good ')[0])
+# print(sr(data, 98)[0])
+# print(word_search(data, ' good ')[0])
