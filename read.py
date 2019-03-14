@@ -1,3 +1,5 @@
+import time
+
 
 # 讀取檔案並傳回，印出總數
 def count(file_name):
@@ -39,11 +41,12 @@ def word_search(data, word):
     print('內容包含', word, '的留言數量:', len(include_word))
     return include_word
 
+
 # 計算每個單字出現次數
 def word_count(data):
     wc = {}
     for d in data:
-        words = d.split(' ')
+        words = d.split()
         for word in words:
             if word not in wc:
                 wc[word] = 1
@@ -51,9 +54,32 @@ def word_count(data):
                 wc[word] += 1
     return wc
 
+# 查找字典中的key
+def count_search(dic):
+    key = ''
+    print('\nkey word 查尋功能。輸入「%quit」可結束')
+    while key != '%quit':
+        key = input('\n請輸入關鍵字：')
+        if key in dic:
+            print(dic[key])
+        else:
+            print(0)
+
+# 篩選出現超過特定次數的字詞
+def count_filter(dic):
+    while True:
+        cou = input('\n印出出現特定次數以上字詞，次數：')
+        cou = int(cou)
+        for word in dic:
+            if dic[word] >= cou:
+                print(word, dic[word])
+
+
 data = count('reviews.txt')
 
-print(word_count(data)['good'])
+wc = word_count(data)
+count_search(wc)
+count_filter(wc)
 
 # ave_len(data)
 # print(sr(data, 98)[0])
